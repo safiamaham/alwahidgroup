@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Wahid Group | Real Estate & Builders Karachi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        },
+                        emerald: {
+                            900: '#064e3b',
+                            950: '#022c22',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-gold-500 selection:text-slate-950">
+
+    <!-- PixelGrow Outreach / Demo Notice Banner -->
+    <div class="bg-gradient-to-r from-emerald-900 via-emerald-950 to-slate-900 border-b border-gold-500/30 text-xs sm:text-sm py-2.5 px-4 text-center text-slate-200 relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-3">
+            <span class="bg-gold-500 text-slate-950 px-2 py-0.5 rounded text-[11px] font-bold tracking-wide uppercase">FREE DEMO</span>
+            <p>Crafted exclusively for <span class="font-semibold text-white">Al Wahid Group</span> by <span class="text-gold-400 font-bold">PixelGrow</span> to elevate your real estate digital presence.</p>
+            <a href="#contact" class="underline font-medium hover:text-gold-400 transition">Claim This Website</a>
+        </div>
+    </div>
+
+    <!-- Notification Toast (Message Box) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-slate-900 border border-gold-500/50 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3">
+        <div class="text-gold-500 text-xl"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+            <h4 id="toast-title" class="font-semibold text-sm">Success!</h4>
+            <p id="toast-msg" class="text-xs text-slate-400">Request submitted successfully.</p>
+        </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-700 to-gold-500 flex items-center justify-center shadow-lg shadow-gold-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-building-shield text-slate-950 text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white">Al Wahid Group</span>
+                    <span class="block text-[10px] tracking-widest uppercase text-gold-400 font-semibold">Real Estate & Builders</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#properties" class="hover:text-gold-400 transition">Properties</a>
+                <a href="#services" class="hover:text-gold-400 transition">Services</a>
+                <a href="#about" class="hover:text-gold-400 transition">About Us</a>
+                <a href="#contact" class="hover:text-gold-400 transition">Contact</a>
+            </nav>
+
+            <!-- WhatsApp & Action Buttons -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://wa.me/923303181126?text=Hello%20Al%20Wahid%20Group,%20I%20would%20like%20to%20inquire%20about%20your%20real%20estate%20services." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-600/30 flex items-center space-x-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="tel:+923303181126" class="bg-slate-900 border border-slate-800 text-slate-200 text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-slate-800 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-phone text-gold-400"></i>
+                    <span>+92 330 3181126</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-6 space-y-4">
+            <a href="#properties" class="block text-slate-300 hover:text-gold-400 font-medium">Properties</a>
+            <a href="#services" class="block text-slate-300 hover:text-gold-400 font-medium">Services</a>
+            <a href="#about" class="block text-slate-300 hover:text-gold-400 font-medium">About Us</a>
+            <a href="#contact" class="block text-slate-300 hover:text-gold-400 font-medium">Contact</a>
+            <div class="pt-4 border-t border-slate-800 flex flex-col space-y-3">
+                <a href="https://wa.me/923303181126?text=Hello%20Al%20Wahid%20Group" target="_blank" class="text-center bg-emerald-600 text-white font-semibold py-2.5 rounded-xl flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Chat on WhatsApp</span>
+                </a>
+                <a href="tel:+923303181126" class="text-center bg-slate-800 text-slate-200 font-semibold py-2.5 rounded-xl">
+                    Call: +92 330 3181126
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-28 md:pt-36 md:pb-36 overflow-hidden bg-gradient-to-b from-slate-950 via-emerald-950/40 to-slate-950">
+        <!-- Background Glow -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/4 right-10 w-[400px] h-[400px] bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-6">
+                <div class="inline-flex items-center space-x-2 bg-slate-900 border border-gold-500/30 px-4 py-2 rounded-full text-xs font-semibold text-gold-400">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Gulshan-e-Iqbal, Karachi • Premier Real Estate & Builders</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                    Find Your Dream Property in <span class="bg-gradient-to-r from-gold-400 via-amber-200 to-emerald-400 bg-clip-text text-transparent">Karachi's Finest Locations</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+                    Al Wahid Group brings you trusted real estate consultancy, luxury residential apartments, commercial plots, and elite construction services.
+                </p>
+            </div>
+
+            <!-- Interactive Quick Search Widget -->
+            <div class="mt-12 max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 p-4 sm:p-6 rounded-3xl shadow-2xl backdrop-blur-md">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Property Type</label>
+                        <select id="search-type" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                            <option>All Types</option>
+                            <option>Luxury Apartment</option>
+                            <option>Commercial Office</option>
+                            <option>Residential Plot</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Location</label>
+                        <select id="search-location" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                            <option>Gulshan-e-Iqbal</option>
+                            <option>Gulistan-e-Jauhar</option>
+                            <option>University Road</option>
+                            <option>Scheme 33</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="filterProperties()" class="w-full bg-gradient-to-r from-gold-500 to-amber-600 hover:opacity-95 text-slate-950 font-bold py-3 px-6 rounded-xl transition shadow-lg shadow-gold-500/20">
+                            <i class="fa-solid fa-magnifying-glass mr-2"></i> Search Properties
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Showcase -->
+    <section id="properties" class="py-24 bg-slate-900/40 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 space-y-4 md:space-y-0">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-gold-400">Exclusive Listings</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-1">Featured Properties & Projects</h2>
+                </div>
+                <div class="flex items-center space-x-2 text-sm text-slate-400">
+                    <span>Showing verified listings in Karachi</span>
+                </div>
+            </div>
+
+            <!-- Property Grid -->
+            <div id="property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property 1 -->
+                <div class="property-card bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden group hover:border-gold-500/50 transition duration-300" data-type="Luxury Apartment" data-location="Gulshan-e-Iqbal">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Luxury Apartment" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/064e3b/facc15?text=Luxury+Apartment'">
+                        <div class="absolute top-4 left-4 bg-emerald-950/90 text-gold-400 border border-gold-500/30 text-xs px-3 py-1.5 rounded-full font-semibold">
+                            For Sale
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                            <span class="text-xl font-extrabold text-white bg-slate-950/80 px-3 py-1 rounded-xl backdrop-blur-sm">PKR 2.45 Crore</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-gold-400 transition">Memon Arcade Luxury Suite</h3>
+                            <p class="text-xs text-slate-400 mt-1 flex items-center"><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i> Block 13 B, Gulshan-e-Iqbal, Karachi</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-800 text-xs text-slate-300">
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-bed text-gold-500"></i><span>3 Beds</span></div>
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-bath text-gold-500"></i><span>3 Baths</span></div>
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-ruler-combined text-gold-500"></i><span>1,850 sq.ft</span></div>
+                        </div>
+                        <div class="pt-2 flex items-center space-x-3">
+                            <a href="https://wa.me/923303181126?text=I%20am%20interested%20in%20Memon%20Arcade%20Luxury%20Suite%20(PKR%202.45%20Crore)" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl text-center text-xs flex items-center justify-center space-x-2 transition">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Inquire on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="property-card bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden group hover:border-gold-500/50 transition duration-300" data-type="Commercial Office" data-location="Gulshan-e-Iqbal">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Commercial Office" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/064e3b/facc15?text=Commercial+Office'">
+                        <div class="absolute top-4 left-4 bg-emerald-950/90 text-gold-400 border border-gold-500/30 text-xs px-3 py-1.5 rounded-full font-semibold">
+                            For Rent / Sale
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                            <span class="text-xl font-extrabold text-white bg-slate-950/80 px-3 py-1 rounded-xl backdrop-blur-sm">PKR 1.25 Crore</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-gold-400 transition">Executive Corporate Suite</h3>
+                            <p class="text-xs text-slate-400 mt-1 flex items-center"><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i> Ground Floor, Memon Arcade, Gulshan-e-Iqbal</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-800 text-xs text-slate-300">
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-briefcase text-gold-500"></i><span>Office</span></div>
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-car text-gold-500"></i><span>Parking</span></div>
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-ruler-combined text-gold-500"></i><span>950 sq.ft</span></div>
+                        </div>
+                        <div class="pt-2 flex items-center space-x-3">
+                            <a href="https://wa.me/923303181126?text=I%20am%20interested%20in%20Executive%20Corporate%20Suite%20(PKR%201.25%20Crore)" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl text-center text-xs flex items-center justify-center space-x-2 transition">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Inquire on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="property-card bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden group hover:border-gold-500/50 transition duration-300" data-type="Residential Plot" data-location="Scheme 33">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Residential Plot" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/064e3b/facc15?text=Residential+Plot'">
+                        <div class="absolute top-4 left-4 bg-emerald-950/90 text-gold-400 border border-gold-500/30 text-xs px-3 py-1.5 rounded-full font-semibold">
+                            For Sale
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                            <span class="text-xl font-extrabold text-white bg-slate-950/80 px-3 py-1 rounded-xl backdrop-blur-sm">PKR 1.80 Crore</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-gold-400 transition">Prime Residential 500 Sq.Yd Plot</h3>
+                            <p class="text-xs text-slate-400 mt-1 flex items-center"><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i> Scheme 33, Main Super Highway, Karachi</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-800 text-xs text-slate-300">
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-map text-gold-500"></i><span>500 Sq.Yd</span></div>
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-file-contract text-gold-500"></i><span>Lease</span></div>
+                            <div class="flex items-center space-x-1.5"><i class="fa-solid fa-compass text-gold-500"></i><span>West Open</span></div>
+                        </div>
+                        <div class="pt-2 flex items-center space-x-3">
+                            <a href="https://wa.me/923303181126?text=I%20am%20interested%20in%20Prime%20Residential%20500%20Sq.Yd%20Plot%20(PKR%201.80%20Crore)" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl text-center text-xs flex items-center justify-center space-x-2 transition">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Inquire on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-400">What We Offer</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Professional Real Estate Services</h2>
+                <p class="text-slate-400 text-sm sm:text-base">We provide end-to-end real estate consultancy, development, and investment management.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl hover:border-gold-500/50 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-slate-950 transition">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Real Estate Consultancy</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Expert advice on property valuation, market trends, legal documentation, and secure investments.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 text-xs font-semibold text-gold-400">
+                        <span>Trusted Advisors</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl hover:border-gold-500/50 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-500 group-hover:text-white transition">
+                            <i class="fa-solid fa-house-chimney"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Buying & Selling</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Seamless buying and selling of residential and commercial properties across Karachi with verified title deeds.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 text-xs font-semibold text-emerald-400">
+                        <span>Best Market Rates</span>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl hover:border-gold-500/50 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Commercial Investments</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">High-yield commercial properties, corporate spaces, and plaza investments with guaranteed ROI.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 text-xs font-semibold text-amber-400">
+                        <span>High ROI Portfolios</span>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl hover:border-gold-500/50 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-cyan-500 group-hover:text-slate-950 transition">
+                            <i class="fa-solid fa-helmet-safety"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Construction & Builders</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Quality construction services, architectural planning, and turnkey project development in Karachi.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+                        <span>Elite Craftsmanship</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us / Location Section -->
+    <section id="about" class="py-24 bg-slate-900/40 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-slate-900 border border-gold-500/30 px-4 py-2 rounded-full text-xs font-semibold text-gold-400">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Established Real Estate Agency</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold">Building Trust & Excellence in Karachi</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Al Wahid Group is a prominent real estate and builders firm situated at the heart of Gulshan-e-Iqbal, Karachi. With years of dedicated market experience, we help families and investors secure prime properties with complete transparency and legal security.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-2">
+                        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+                            <div class="text-gold-400 font-bold text-2xl mb-1">5.0 ★</div>
+                            <div class="text-xs text-slate-400 font-medium">Verified Client Rating</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+                            <div class="text-emerald-400 font-bold text-2xl mb-1">100%</div>
+                            <div class="text-xs text-slate-400 font-medium">Secure Legal Title</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Card -->
+                <div class="lg:col-span-6">
+                    <div class="bg-gradient-to-br from-slate-900 to-emerald-950/40 border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl space-y-6">
+                        <div class="flex items-center space-x-4 border-b border-slate-800 pb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gold-500 text-slate-950 flex items-center justify-center text-2xl font-bold shadow-lg shadow-gold-500/20">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Al Wahid Group Office</h3>
+                                <p class="text-xs text-slate-400">Gulshan-e-Iqbal, Karachi</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4 text-sm text-slate-300">
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-location-dot text-gold-500 mt-1"></i>
+                                <span>Suite # S-7, Ground Floor, Memon Arcade, Block 13 B Gulshan-e-Iqbal, Karachi, 75300, Pakistan</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-phone text-gold-500"></i>
+                                <a href="tel:+923303181126" class="hover:text-gold-400 transition font-semibold">+92 330 3181126</a>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-clock text-gold-500"></i>
+                                <span>Open Daily · Closes 8:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <a href="https://wa.me/923303181126?text=Hello%20Al%20Wahid%20Group,%20I%20would%20like%20to%20visit%20your%20office%20at%20Memon%20Arcade." target="_blank" class="block w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-center rounded-xl font-semibold text-sm transition text-white shadow-lg">
+                                Book an Appointment via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Inquiry Form -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gold-400">Direct Inquiries</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">Let's Discuss Your Real Estate Goals</h2>
+                        <p class="text-slate-400 text-sm sm:text-base mt-4">Whether you want to buy, sell, or invest in property around Gulshan-e-Iqbal or Scheme 33, our team is ready to help.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">WhatsApp Direct</h4>
+                                <a href="https://wa.me/923303181126" target="_blank" class="text-xs text-gold-400 font-semibold hover:underline">+92 330 3181126</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Office Location</h4>
+                                <p class="text-xs text-slate-400">Block 13 B Gulshan-e-Iqbal, Karachi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl">
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-slate-300">Full Name</label>
+                                    <input type="text" required placeholder="Moiz Khan" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-slate-300">Phone / WhatsApp Number</label>
+                                    <input type="text" required placeholder="+92 300 1234567" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-slate-300">I am interested in</label>
+                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
+                                <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
+                                    <option>Buying a Property</option>
+                                    <option>Selling a Property</option>
+                                    <option>Commercial Investment</option>
+                                    <option>Construction & Development</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-slate-300">Message / Requirements</label>
+                                <textarea rows="4" required placeholder="Specify your budget, location preferences, etc..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold-500 transition"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-amber-600 text-slate-950 font-bold py-4 rounded-xl shadow-lg shadow-gold-500/20 hover:opacity-95 transition">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-building-shield text-sm"></i>
+                </div>
+                <span class="font-bold tracking-tight text-white">Al Wahid Group</span>
+            </div>
+            <p class="text-xs text-slate-500 text-center">
+                &copy; 2026 Al Wahid Group. All rights reserved. Suite # S-7, Ground Floor, Memon Arcade, Block 13 B Gulshan-e-Iqbal, Karachi.
+            </p>
+            <div class="flex space-x-4 text-slate-400 text-sm">
+                <a href="https://wa.me/923303181126" target="_blank" class="hover:text-gold-400 transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                <a href="#" class="hover:text-gold-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-gold-400 transition"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Filter Properties
+        function filterProperties() {
+            const selectedType = document.getElementById('search-type').value;
+            const selectedLocation = document.getElementById('search-location').value;
+            const cards = document.querySelectorAll('.property-card');
+
+            cards.forEach(card => {
+                const type = card.getAttribute('data-type');
+                const location = card.getAttribute('data-location');
+
+                let matchType = (selectedType === 'All Types' || type === selectedType);
+                let matchLocation = (selectedLocation === 'All Locations' || location.includes(selectedLocation));
+
+                if (matchType && matchLocation) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            showToast("Search Filter Applied", "Showing matching properties.");
+        }
+
+        // Custom Toast Notification instead of alert()
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = msg;
+
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("Inquiry Received!", "Thank you. Al Wahid Group representatives will contact you shortly.");
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
